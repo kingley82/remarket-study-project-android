@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp">
+
+    <EditText
+        android:id="@+id/searchEdit"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginBottom="5sp"
+        android:background="@drawable/text_edit"
+        android:drawableEnd="@drawable/baseline_search_24"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="Поиск"
+        android:inputType="text"
+        android:padding="10sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/adsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/messagesBtn"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/baseline_message_24" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/newAdBtn"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            app:srcCompat="@drawable/new_ad" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/profileBtn"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/baseline_person_24" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

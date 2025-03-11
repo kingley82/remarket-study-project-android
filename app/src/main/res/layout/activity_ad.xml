@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5sp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ProfileBackBtn"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:background="@null"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/titleDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="title"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="30sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp">
+
+                <LinearLayout
+                    android:id="@+id/adPhotosLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="300sp"
+                        android:layout_height="300sp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="300sp"
+                        android:layout_height="300sp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="300sp"
+                        android:layout_height="300sp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:srcCompat="@tools:sample/avatars" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/adTitle2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/open_sans"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="title" />
+
+            <TextView
+                android:id="@+id/adPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/open_sans"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="20000" />
+
+            <TextView
+                android:id="@+id/adPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/open_sans"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="18sp"
+                tools:text="+7 (999) 999-9999" />
+
+            <TextView
+                android:id="@+id/adSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:textSize="18sp"
+                tools:text="Продавец: username" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10sp" />
+
+            <TextView
+                android:id="@+id/adDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:textSize="18sp"
+                tools:text="Description" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/chatWithSellerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Написать продавцу" />
+
+</LinearLayout>

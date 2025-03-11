@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10sp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5sp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ProfileBackBtn"
+            app:srcCompat="@drawable/baseline_arrow_back_ios_24"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:background="@null"
+            android:src="@drawable/baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/titleDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="Новое объявление"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="30sp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:text="Фото товара (максимум 3)"
+                android:textSize="14sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/adPhotoScroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/adAddPhotoBtn"
+                        android:layout_width="150sp"
+                        android:layout_height="150sp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#00FFFFFF"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/new_photo" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <EditText
+                android:id="@+id/adNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:hint="Название товара"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/adPriceEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:hint="Цена товара в рублях"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/adPhoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:hint="Ваш контактный телефон"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/adDescEdit"
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:layout_margin="5sp"
+                android:background="@drawable/borders"
+                android:ems="10"
+                android:fontFamily="@font/open_sans"
+                android:gravity="start|top"
+                android:hint="Описание товара"
+                android:inputType="textMultiLine"
+                android:padding="5sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/postAdBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Разместить" />
+</LinearLayout>
