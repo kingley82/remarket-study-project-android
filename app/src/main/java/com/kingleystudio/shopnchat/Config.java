@@ -3,6 +3,7 @@ package com.kingleystudio.shopnchat;
 import android.content.Context;
 import android.provider.Settings;
 
+import com.kingleystudio.shopnchat.models.di.Dialog;
 import com.kingleystudio.shopnchat.models.di.User;
 
 public class Config {
@@ -10,7 +11,7 @@ public class Config {
 
     public static User userToProfile;
     public static int adIdToShow;
-    public static int dialogToShow;
+    public static Dialog dialogToShow;
 
     public static Context baseContext;
 

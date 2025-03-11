@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kingleystudio.shopnchat.Config;
 import com.kingleystudio.shopnchat.R;
 import com.kingleystudio.shopnchat.models.di.Message;
+import com.kingleystudio.shopnchat.utils.TimeUtils;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.messageText.setText(messages.get(position).getMessage());
+        holder.messageTime.setText(TimeUtils.TimestampToString(messages.get(position).getTime()));
     }
 
     @Override
@@ -60,10 +62,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView messageText;
+        public TextView messageText, messageTime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             messageText = itemView.findViewById(R.id.messageText);
+            messageTime = itemView.findViewById(R.id.messageTime);
         }
     }
 }

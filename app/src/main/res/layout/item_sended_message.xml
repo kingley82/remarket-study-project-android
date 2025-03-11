@@ -3,19 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#00FFFFFF"
-    android:gravity="end"
-    android:orientation="vertical"
-    android:padding="5sp">
 
-    <TextView
-        android:id="@+id/messageText"
+    android:layout_gravity="right"
+    android:gravity="right"
+    android:orientation="horizontal">
+
+
+    <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/sended_message_bubble"
+        android:layout_weight="1" />
 
-        android:fontFamily="@font/open_sans"
-        android:padding="10sp"
-        android:text="text"
-        android:textColor="@color/black" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="5sp"
+        android:background="@drawable/sended_message_bubble"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:padding="5sp">
+
+        <TextView
+            android:id="@+id/messageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="5sp"
+            android:paddingBottom="10sp"
+
+            android:text="textr"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/messageTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:fontFamily="@font/open_sans"
+            android:paddingRight="10sp"
+            android:paddingBottom="10sp"
+            android:text="13:38"
+            android:textColor="#FFF"
+            android:textSize="9sp" />
+    </LinearLayout>
+
 </LinearLayout>

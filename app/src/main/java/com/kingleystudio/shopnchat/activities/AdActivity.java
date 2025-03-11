@@ -16,6 +16,7 @@ import com.kingleystudio.shopnchat.R;
 import com.kingleystudio.shopnchat.models.PayloadWrapper;
 import com.kingleystudio.shopnchat.models.Response;
 import com.kingleystudio.shopnchat.models.di.Ad;
+import com.kingleystudio.shopnchat.models.di.Dialog;
 import com.kingleystudio.shopnchat.models.dto.AdStatusChange;
 import com.kingleystudio.shopnchat.models.dto.GetOrStartDialogByMembers;
 import com.kingleystudio.shopnchat.models.dto.GetAd;
@@ -154,7 +155,7 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
                         }
                         break;
                     case Types.GET_DIALOG:
-                        Config.dialogToShow = response.getPayload().get(Types.ID).asInt();
+                        Config.dialogToShow = JsonUtils.convertJsonNodeToObject(response.getPayload().get(Types.DIALOG), Dialog.class);
                         newActivity(DialogActivity.class);
                         break;
                     case Types.AD_STATUS_CHANGE:

@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00FFFFFF"
-    android:orientation="vertical"
-    android:padding="5sp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:background="@drawable/received_message_bubble"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/messageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/received_message_bubble"
 
+        android:layout_weight="1"
         android:fontFamily="@font/open_sans"
-        android:padding="10sp"
+        android:paddingLeft="10sp"
+        android:paddingTop="10sp"
+        android:paddingRight="5sp"
+        android:paddingBottom="10sp"
         android:text="text"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/messageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:fontFamily="@font/open_sans"
+        android:paddingRight="10sp"
+        android:paddingBottom="10sp"
+        android:text="13:38"
+        android:textColor="#AA000000"
+        android:textSize="9sp" />
+
 </LinearLayout>

@@ -14,5 +14,5 @@ public class Message {
     private int dialog;
     private String message;
     private User sender;
-    private int time;
+    private long time;
 }

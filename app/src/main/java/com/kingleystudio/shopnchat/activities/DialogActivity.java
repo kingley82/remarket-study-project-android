@@ -3,6 +3,7 @@ package com.kingleystudio.shopnchat.activities;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import com.kingleystudio.shopnchat.R;
 import com.kingleystudio.shopnchat.activities.adapters.MessageAdapter;
 import com.kingleystudio.shopnchat.models.PayloadWrapper;
 import com.kingleystudio.shopnchat.models.Response;
+import com.kingleystudio.shopnchat.models.di.Dialog;
 import com.kingleystudio.shopnchat.models.di.Message;
 import com.kingleystudio.shopnchat.models.dto.GetDialogMessages;
 import com.kingleystudio.shopnchat.models.dto.SendMessage;
@@ -25,17 +27,16 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kotlinx.coroutines.channels.Send;
-
 public class DialogActivity extends ABCActivity implements SocketHelper.SocketListener {
     private SocketHelper socketHelper = SocketHelper.getSocketHelper();
-    private int dialogid = Config.dialogToShow;
+    private Dialog dialog = Config.dialogToShow;
 
     private List<Message> messages = new ArrayList<>();
     private RecyclerView recyclerView;
     private MessageAdapter messageAdapter;
 
     private EditText edit;
+    private TextView title;
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
@@ -61,15 +62,18 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
         recyclerView.setLayoutManager(new LinearLayoutManager(DialogActivity.this));
 
         edit = findViewById(R.id.messageEdit);
+        title = findViewById(R.id.titleDialog);
+        title.setText(dialog.getMember1() == Config.currentUser ? dialog.getMember2().getUsername() : dialog.getMember1().getUsername());
 
         findViewById(R.id.sendMessageBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    socketHelper.send(new PayloadWrapper(new SendMessage(edit.getText().toString(), dialogid, Config.currentUser.getId())));
+                    socketHelper.send(new PayloadWrapper(new SendMessage(edit.getText().toString(), dialog.getId(), Config.currentUser.getId())));
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
+                edit.getText().clear();
             }
         });
     }
@@ -79,7 +83,7 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
         super.onStart();
         socketHelper.subscribe(this);
         try {
-            socketHelper.send(new PayloadWrapper(new GetDialogMessages(dialogid)));
+            socketHelper.send(new PayloadWrapper(new GetDialogMessages(dialog.getId())));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -106,6 +110,14 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
                         messages = JsonUtils.convertJsonNodeToList(response.getPayload().get(Types.MESSAGES), Message.class);
                         messageAdapter.setData(messages);
                         messageAdapter.notifyDataSetChanged();
+                        break;
+                    case Types.NEW_MESSAGE:
+                        Message msg = JsonUtils.convertJsonNodeToObject(response.getPayload().get(Types.MESSAGE), Message.class);
+                        if (msg.getDialog() == dialog.getId()) {
+                            messages.add(msg);
+                            messageAdapter.setData(messages);
+                            messageAdapter.notifyDataSetChanged();
+                        }
                         break;
                 }
             }

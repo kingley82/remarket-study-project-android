@@ -1,6 +1,7 @@
 package com.kingleystudio.shopnchat.activities.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kingleystudio.shopnchat.Config;
 import com.kingleystudio.shopnchat.R;
+import com.kingleystudio.shopnchat.activities.AdActivity;
+import com.kingleystudio.shopnchat.activities.DialogActivity;
 import com.kingleystudio.shopnchat.models.di.Ad;
 import com.kingleystudio.shopnchat.models.di.Dialog;
 
@@ -21,10 +24,12 @@ import java.util.Objects;
 public class DialogsAdapter extends RecyclerView.Adapter<DialogsAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private List<Dialog> dialogs = new ArrayList<>();
+    private Context context;
 
     public DialogsAdapter(Context ctx, List<Dialog> states) {
         this.inflater = LayoutInflater.from(ctx);
         this.dialogs = states;
+        this.context = ctx;
     }
 
     @NonNull
@@ -41,6 +46,14 @@ public class DialogsAdapter extends RecyclerView.Adapter<DialogsAdapter.ViewHold
                 Objects.equals(Config.currentUser.getUsername(), dialog.getMember1().getUsername()) ? dialog.getMember2().getUsername() : dialog.getMember1().getUsername()
         );
         holder.lastMessage.setText(dialog.getLast_message());
+        holder.iView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.dialogToShow = dialog;
+                Intent intent = new Intent(context, DialogActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -54,17 +67,13 @@ public class DialogsAdapter extends RecyclerView.Adapter<DialogsAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView memberUsername, lastMessage;
+        public View iView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             memberUsername = itemView.findViewById(R.id.memberUsername);
             lastMessage = itemView.findViewById(R.id.recentMessage);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO go to dialog
-                }
-            });
+            iView = itemView;
         }
     }
 }
