@@ -3,6 +3,7 @@ package com.kingleystudio.shopnchat.net;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,7 +68,13 @@ public class SocketHelper {
                         Config.currentUser = null;
                     }
 
-                } else {
+                } else if (response.getTypeEvent().equals(Types.NEW_MESSAGE)) {
+                    Toast toast = new Toast(Config.baseContext);
+                    toast.setText("Вам пришло новое сообщение");
+                    toast.setDuration(Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
                     sendToSubscribers(response);
                 }
 

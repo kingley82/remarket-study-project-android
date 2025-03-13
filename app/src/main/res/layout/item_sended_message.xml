@@ -21,8 +21,7 @@
         android:layout_margin="5sp"
         android:background="@drawable/sended_message_bubble"
         android:gravity="right"
-        android:orientation="horizontal"
-        android:padding="5sp">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/messageText"
