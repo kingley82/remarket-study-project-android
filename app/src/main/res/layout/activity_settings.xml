@@ -74,6 +74,23 @@
             android:padding="5sp"
             android:textSize="17sp"
             android:text="Выйти из аккаунта" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btnAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:padding="5sp"
+            android:text="О проекте"
+            android:textSize="17sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
