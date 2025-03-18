@@ -2,7 +2,6 @@ package com.kingleystudio.remarket.activities;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +17,7 @@ import androidx.activity.OnBackPressedCallback;
 
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
-import com.kingleystudio.remarket.models.PayloadWrapper;
+import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.di.Ad;
 import com.kingleystudio.remarket.models.di.Dialog;
@@ -34,7 +33,6 @@ import com.kingleystudio.remarket.utils.StringUtils;
 
 import org.json.JSONException;
 
-import java.time.Duration;
 import java.util.Objects;
 
 public class AdActivity extends ABCActivity implements SocketHelper.SocketListener {

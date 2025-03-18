@@ -22,14 +22,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
 import com.kingleystudio.remarket.models.Errors;
-import com.kingleystudio.remarket.models.PayloadWrapper;
+import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.Types;
 import com.kingleystudio.remarket.models.dto.AdPost;
 import com.kingleystudio.remarket.net.SocketHelper;
 import com.kingleystudio.remarket.utils.AlertUtils;
 import com.kingleystudio.remarket.utils.Base64Utils;
-import com.kingleystudio.remarket.utils.Logs;
 import com.kingleystudio.remarket.utils.NumberUtils;
 
 import org.json.JSONArray;

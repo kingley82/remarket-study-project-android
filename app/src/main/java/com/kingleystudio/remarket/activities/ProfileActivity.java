@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
 import com.kingleystudio.remarket.activities.adapters.AdAdapter;
-import com.kingleystudio.remarket.models.PayloadWrapper;
+import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.di.Ad;
 import com.kingleystudio.remarket.models.di.User;

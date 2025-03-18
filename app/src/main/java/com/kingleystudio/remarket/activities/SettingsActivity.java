@@ -14,7 +14,7 @@ import androidx.activity.OnBackPressedCallback;
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
 import com.kingleystudio.remarket.models.Errors;
-import com.kingleystudio.remarket.models.PayloadWrapper;
+import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.di.User;
 import com.kingleystudio.remarket.models.dto.AccountChangeName;

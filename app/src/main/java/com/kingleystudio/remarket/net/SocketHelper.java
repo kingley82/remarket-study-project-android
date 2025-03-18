@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.activities.BaseActivity;
-import com.kingleystudio.remarket.models.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.Types;
 import com.kingleystudio.remarket.utils.JsonUtils;

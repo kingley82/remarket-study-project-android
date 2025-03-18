@@ -11,7 +11,7 @@ import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
 import com.kingleystudio.remarket.activities.adapters.DialogsAdapter;
 import com.kingleystudio.remarket.models.Types;
-import com.kingleystudio.remarket.models.PayloadWrapper;
+import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.di.Dialog;
 import com.kingleystudio.remarket.models.dto.GetDialogs;

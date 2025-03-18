@@ -1,8 +1,10 @@
-package com.kingleystudio.remarket.models;
+package com.kingleystudio.remarket.net;
 
 import androidx.annotation.NonNull;
 
 import com.kingleystudio.remarket.Config;
+import com.kingleystudio.remarket.models.IBaseMessage;
+import com.kingleystudio.remarket.models.Types;
 
 import org.json.JSONException;
 import org.json.JSONObject;
