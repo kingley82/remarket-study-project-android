@@ -29,6 +29,7 @@ import com.kingleystudio.remarket.models.dto.AdPost;
 import com.kingleystudio.remarket.net.SocketHelper;
 import com.kingleystudio.remarket.utils.AlertUtils;
 import com.kingleystudio.remarket.utils.Base64Utils;
+import com.kingleystudio.remarket.utils.Logs;
 import com.kingleystudio.remarket.utils.NumberUtils;
 
 import org.json.JSONArray;
@@ -52,6 +53,7 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
     private ImageButton newImageBtn;
 
     private List<Uri> attachedPhotos = new ArrayList<>();
+    private PickVisualMediaRequest pickVisualMediaRequest;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -80,6 +82,8 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
         adPostBtn = findViewById(R.id.postAdBtn);
         newImageBtn = findViewById(R.id.adAddPhotoBtn);
 
+        pickVisualMediaRequest = new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build();
+
         newImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,63 +93,78 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
                     return;
                 }
 
-                pickMultipleMedia.launch(new PickVisualMediaRequest.Builder()
-                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
-                        .build());
+                pickMultipleMedia.launch(pickVisualMediaRequest);
             }
         });
 
         adPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = adName.getText().toString().trim();
-                String textPrice = adPrice.getText().toString().trim();
-                String phone = adPhone.getText().toString().trim();
-                String desc = adDesc.getText().toString().trim();
-                if (title.isEmpty() || title.length() < 10) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Название объявления слишком короткое");
-                    return;
-                }
-                if (textPrice.isEmpty()) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Необходимо указать цену");
-                    return;
-                }
-                float price = Float.parseFloat(textPrice);
-                if (price < 0f) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Цена не может быть отрицательной");
-                    return;
-                }
-                if (desc.isEmpty()) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Заполните описание товара");
-                    return;
-                }
-                if (
-                        !phone.matches("(^8|7|\\+7)[23459](\\d{9})") &
-                        !phone.matches("(^375|\\+375)(\\s+)?\\(?(17|29|33|44)\\)?(\\s+)?[0-9]{3}[0-9]{2}[0-9]{2}$") &
-                        !phone.matches("(^8|7|\\+7)[067](\\d{9})")
-                ) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Указан неверный номер телефона. Возможен ввод только российских, белорусских и казахских номеров.");
-                    return;
-                }
-                if (attachedPhotos.isEmpty()) {
-                    AlertUtils.OkAlert(NewAdActivity.this, "Вы должны прикрепить хотя бы одно фото");
-                    return;
-                }
-                JSONArray images = new JSONArray();
-                for (Uri uri : attachedPhotos) {
-                    try {
-                        images.put(Base64Utils.uriToBase64(NewAdActivity.this, uri));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Logs.i("sending");
+                        String title = adName.getText().toString().trim();
+                        String textPrice = adPrice.getText().toString().trim();
+                        String phone = adPhone.getText().toString().trim();
+                        String desc = adDesc.getText().toString().trim();
+                        if (title.isEmpty() || title.length() < 10) {
+                            alert("Название объявления слишком короткое");
+                            return;
+                        }
+                        if (textPrice.isEmpty()) {
+                            alert("Необходимо указать цену");
+                            return;
+                        }
+                        float price = Float.parseFloat(textPrice);
+                        if (price < 0f) {
+                            alert("Цена не может быть отрицательной");
+                            return;
+                        }
+                        if (desc.isEmpty()) {
+                            alert("Заполните описание товара");
+                            return;
+                        }
+                        if (
+                                !phone.matches("(^8|7|\\+7)[23459](\\d{9})") &
+                                        !phone.matches("(^375|\\+375)(\\s+)?\\(?(17|29|33|44)\\)?(\\s+)?[0-9]{3}[0-9]{2}[0-9]{2}$") &
+                                        !phone.matches("(^8|7|\\+7)[067](\\d{9})")
+                        ) {
+                            alert("Указан неверный номер телефона. Возможен ввод только российских, белорусских и казахских номеров.");
+                            return;
+                        }
+                        if (attachedPhotos.isEmpty()) {
+                            alert("Вы должны прикрепить хотя бы одно фото");
+                            return;
+                        }
+                        JSONArray images = new JSONArray();
+                        for (Uri uri : attachedPhotos) {
+                            try {
+                                images.put(Base64Utils.uriToBase64(NewAdActivity.this, uri));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        try {
+                            socketHelper.send(new PayloadWrapper(new AdPost(title, price, images, phone, desc, Config.currentUser.getId(), "active")));
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                }
-                try {
-                    socketHelper.send(new PayloadWrapper(new AdPost(title, price, images, phone, desc, Config.currentUser.getId(), "active")));
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
+                }).start();
+
             }
         });
+    }
+
+    private void alert(String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertUtils.OkAlert(NewAdActivity.this, message);
+            }
+        });
+
     }
 
     public String getBytes(InputStream inputStream) throws IOException {

@@ -2,6 +2,7 @@ package com.kingleystudio.remarket.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,5 +22,7 @@ public abstract class ABCActivity extends AppCompatActivity {
         if (instance != null)
             intent.putExtras(instance);
         startActivity(intent);
+
     }
+
 }

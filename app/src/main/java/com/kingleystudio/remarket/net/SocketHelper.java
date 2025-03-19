@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.kingleystudio.remarket.Config;
+import com.kingleystudio.remarket.activities.ABCActivity;
 import com.kingleystudio.remarket.activities.BaseActivity;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.Types;
@@ -31,7 +32,6 @@ public class SocketHelper {
     public SocketHelper() {
         URI uri;
         try {
-            //192.168.224.46 - realme hotspot
             uri = new URI("ws://192.168.0.108:8088/");
         }
         catch (URISyntaxException e) {
@@ -62,11 +62,6 @@ public class SocketHelper {
                         Config.currentUser = null;
                     }
 
-                } else if (response.getTypeEvent().equals(Types.NEW_MESSAGE)) {
-                    Toast toast = new Toast(Config.baseContext);
-                    toast.setText("Вам пришло новое сообщение");
-                    toast.setDuration(Toast.LENGTH_SHORT);
-                    toast.show();
                 }
                 else {
                     sendToSubscribers(response);
@@ -155,7 +150,10 @@ public class SocketHelper {
     }
 
     public void send(String data) {
-        Logs.net("Sending data: " + data);
+        if (data.contains("\"e\":\"adp\""))
+            Logs.net("Sending data: ad post");
+        else
+            Logs.net("Sending data: " + data);
         this.webSocketClient.send(data);
     }
 
