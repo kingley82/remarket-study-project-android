@@ -100,7 +100,7 @@ public class SocketHelper {
         webSocketClient.setConnectTimeout(10000);
         webSocketClient.setReadTimeout(60000);
         webSocketClient.addHeader("Origin", "http://developer.example.com");
-        webSocketClient.enableAutomaticReconnection(5000);
+        webSocketClient.enableAutomaticReconnection(1000);
         webSocketClient.connect();
     }
 

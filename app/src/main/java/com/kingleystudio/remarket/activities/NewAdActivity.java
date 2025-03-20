@@ -4,6 +4,7 @@ import static android.widget.Toast.LENGTH_LONG;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,8 @@ import com.kingleystudio.remarket.models.dto.AdPost;
 import com.kingleystudio.remarket.net.SocketHelper;
 import com.kingleystudio.remarket.utils.AlertUtils;
 import com.kingleystudio.remarket.utils.Base64Utils;
+import com.kingleystudio.remarket.utils.ImageUtils;
+import com.kingleystudio.remarket.utils.JsonUtils;
 import com.kingleystudio.remarket.utils.Logs;
 import com.kingleystudio.remarket.utils.NumberUtils;
 
@@ -140,7 +143,13 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
                         JSONArray images = new JSONArray();
                         for (Uri uri : attachedPhotos) {
                             try {
-                                images.put(Base64Utils.uriToBase64(NewAdActivity.this, uri));
+                                Bitmap image = ImageUtils.uriToBitmap(NewAdActivity.this, uri);
+                                if (image.getWidth() > 1366) {
+                                    image = ImageUtils.resizeBitmapByWidth(image);
+                                } else if (image.getHeight() > 768) {
+                                    image = ImageUtils.resizeBitmapByHeight(image);
+                                }
+                                images.put(Base64Utils.bitmapToBase64(image));
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }

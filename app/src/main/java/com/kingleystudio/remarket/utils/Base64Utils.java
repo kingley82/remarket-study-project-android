@@ -12,8 +12,11 @@ import java.io.InputStream;
 
 public class Base64Utils {
     public static String uriToBase64(Context context, Uri uri) throws FileNotFoundException {
-        InputStream imageStream = context.getContentResolver().openInputStream(uri);
-        Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+        Bitmap bitmap = ImageUtils.uriToBitmap(context, uri);
+        return bitmapToBase64(bitmap);
+    }
+
+    public static String bitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] b = baos.toByteArray();
