@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kingleystudio.remarket.Config;
 import com.kingleystudio.remarket.R;
 import com.kingleystudio.remarket.activities.adapters.MessageAdapter;
+import com.kingleystudio.remarket.models.di.User;
 import com.kingleystudio.remarket.net.PayloadWrapper;
 import com.kingleystudio.remarket.models.Response;
 import com.kingleystudio.remarket.models.di.Dialog;
@@ -63,7 +64,15 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
 
         edit = findViewById(R.id.messageEdit);
         title = findViewById(R.id.titleDialog);
-        title.setText(dialog.getMember1() == Config.currentUser ? dialog.getMember2().getUsername() : dialog.getMember1().getUsername());
+        User userInChat = dialog.getMember1() == Config.currentUser ? dialog.getMember2() : dialog.getMember1();
+        title.setText(userInChat.getUsername());
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Config.userToProfile = userInChat;
+                newActivity(ProfileActivity.class);
+            }
+        });
 
         findViewById(R.id.sendMessageBtn).setOnClickListener(new View.OnClickListener() {
             @Override

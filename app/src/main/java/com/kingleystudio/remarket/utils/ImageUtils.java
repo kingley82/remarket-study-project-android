@@ -19,8 +19,6 @@ public class ImageUtils {
         int newWidth = 1366;
         float scale = (float) width / (float) newWidth;
         int newHeight = (int)((float) height / scale);
-        Logs.i(newWidth);
-        Logs.i(newHeight);
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
     }
     public static Bitmap resizeBitmapByHeight(Bitmap bitmap) {
@@ -28,7 +26,7 @@ public class ImageUtils {
         int height = bitmap.getHeight();
         int newHeight = 768;
         float scale = (float) height / (float) newHeight;
-        int newWidth = (int)((float) height / scale);
+        int newWidth = (int)((float) width / scale);
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
     }
 }
