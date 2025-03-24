@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -62,7 +63,7 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_new_ad);
-
+        Logs.i("ON CREATE");
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -164,6 +165,19 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
 
             }
         });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Logs.i("RECREATE");
+        recreate();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Logs.i("resume");
     }
 
     private void alert(String message) {

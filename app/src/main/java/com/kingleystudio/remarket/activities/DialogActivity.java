@@ -64,7 +64,7 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
 
         edit = findViewById(R.id.messageEdit);
         title = findViewById(R.id.titleDialog);
-        User userInChat = dialog.getMember1() == Config.currentUser ? dialog.getMember2() : dialog.getMember1();
+        User userInChat = dialog.getMember1().getId() == Config.currentUser.getId() ? dialog.getMember2() : dialog.getMember1();
         title.setText(userInChat.getUsername());
         title.setOnClickListener(new View.OnClickListener() {
             @Override
