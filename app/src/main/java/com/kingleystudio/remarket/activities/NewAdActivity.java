@@ -120,6 +120,12 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
                             alert("Необходимо указать цену");
                             return;
                         }
+                        for (char a : textPrice.toCharArray()) {
+                            if ("1234567890.".indexOf(a) == -1) {
+                                alert("Необходимо указать корректную цену");
+                                return;
+                            }
+                        }
                         float price = Float.parseFloat(textPrice);
                         if (price < 0f) {
                             alert("Цена не может быть отрицательной");
