@@ -17,6 +17,7 @@ public class PayloadWrapper {
         this.data = new JSONObject();
         this.data.put(Types.EVENT, message.getType());
         this.data.put(Types.USERNAME, Config.currentUser == null ? "" : Config.currentUser.getUsername());
+        this.data.put(Types.UID, Config.currentUser == null ? -1 : Config.currentUser.getId());
         this.data.put(Types.DEVICE_ID, Config.getDeviceID(Config.baseContext));
         this.data.put(Types.PAYLOAD, message.toJsonObject());
     }

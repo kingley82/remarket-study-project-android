@@ -69,8 +69,6 @@ public class ProfileActivity extends ABCActivity implements SocketHelper.SocketL
         adAdapter = new AdAdapter(this, ads);
         recyclerView.setAdapter(adAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        usernameLabel.setText(user.getUsername());
     }
 
     private float calculateProfit(boolean isMoney) {
@@ -88,6 +86,8 @@ public class ProfileActivity extends ABCActivity implements SocketHelper.SocketL
     @Override
     protected void onStart() {
         super.onStart();
+        user = Config.userToProfile;
+        usernameLabel.setText(user.getUsername());
         this.socketHelper.subscribe(this);
         try {
             this.socketHelper.send(new PayloadWrapper(new GetAds(Config.userToProfile.getId(), 1000, 0, Config.userToProfile.getId() != Config.currentUser.getId())));
@@ -128,7 +128,7 @@ public class ProfileActivity extends ABCActivity implements SocketHelper.SocketL
                                     NumberUtils.roundFloatAndCastToString(calculateProfit(false), 2)));
 
                         } else {
-                            profitLabel.setText(String.format("Продано %s товаров", NumberUtils.roundFloatAndCastToString(calculateProfit(false), 2)));
+                            profitLabel.setText(String.format("Продано %s товаров", response.getPayload().get(Types.COUNT).asText()));
                         }
                         break;
                 }

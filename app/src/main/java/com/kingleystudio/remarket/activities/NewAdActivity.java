@@ -130,7 +130,7 @@ public class NewAdActivity extends ABCActivity implements SocketHelper.SocketLis
                             return;
                         }
                         if (
-                                !phone.matches("(^8|7|\\+7)[23459](\\d{9})") &
+                                !phone.matches("(^8|7|\\+7)[234589](\\d{9})") &
                                         !phone.matches("(^375|\\+375)(\\s+)?\\(?(17|29|33|44)\\)?(\\s+)?[0-9]{3}[0-9]{2}[0-9]{2}$") &
                                         !phone.matches("(^8|7|\\+7)[067](\\d{9})")
                         ) {

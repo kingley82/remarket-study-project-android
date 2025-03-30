@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/paymentAdTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Загрузка..."
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/paymentStatusText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="К оплате"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/paymentAdPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="..."
+        android:textSize="30sp"
+        tools:text="1400P" />
+
+    <Button
+        android:id="@+id/paymentPayBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:enabled="false"
+        android:text="Оплатить" />
+
+    <Button
+        android:id="@+id/paymentCancelBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:enabled="false"
+        android:text="Отмена" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>

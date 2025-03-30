@@ -151,11 +151,30 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/chatWithSellerBtn"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
-        android:text="Написать продавцу" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/chatWithSellerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1sp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Написать продавцу"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/buyThisBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1sp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Оплатить"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </LinearLayout>

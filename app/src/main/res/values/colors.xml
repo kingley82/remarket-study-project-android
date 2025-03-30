@@ -4,8 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="buttonsColor">@color/black</color>
     <color name="transparent">#00000000</color>
-    <color name="red">#FFFF0000</color>
-    <color name="green">#28D928</color>
+    <color name="red">#C10505</color>
+    <color name="green">#3CA43C</color>
     <color name="primary">#6750A4</color>
     <color name="sended_message">#BFBFBF</color>
 </resources>

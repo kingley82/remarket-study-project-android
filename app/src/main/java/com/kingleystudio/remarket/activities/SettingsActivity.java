@@ -135,7 +135,7 @@ public class SettingsActivity extends ABCActivity implements SocketHelper.Socket
         findViewById(R.id.btnAbout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertUtils.OkAlert(SettingsActivity.this, "О проекте", "ReMarket v1.0\nАвтор: Лев Терентьев\n2025", "Закрыть");
+                AlertUtils.OkAlert(SettingsActivity.this, "О проекте", "ReMarket v1.0\nАвтор: Лев Терентьев\n2025", "Закрыть", null);
             }
         });
     }
@@ -182,6 +182,9 @@ public class SettingsActivity extends ABCActivity implements SocketHelper.Socket
                         break;
                     case Types.CHANGE_NAME:
                         Config.currentUser = JsonUtils.convertJsonNodeToObject(response.getPayload().get(Types.USER), User.class);
+                        if (Config.currentUser.getId() == Config.userToProfile.getId()) {
+                            Config.userToProfile = Config.currentUser;
+                        }
                         edit.putString("username", Config.currentUser.getUsername());
                         edit.apply();
                         AlertUtils.OkAlert(SettingsActivity.this, "Успешно.");

@@ -16,7 +16,7 @@ public abstract class ABCActivity extends AppCompatActivity {
 
     public void newActivity(Class activity, Bundle instance) {
         Intent intent = new Intent(getApplicationContext(), activity);
-        if (activity == NewAdActivity.class)
+        if (activity == NewAdActivity.class || activity == PaymentActivity.class)
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         else if (activity == LoginActivity.class)
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -25,6 +25,12 @@ public abstract class ABCActivity extends AppCompatActivity {
         intent.putExtra("prev_activity", activity.getSimpleName());
         if (instance != null)
             intent.putExtras(instance);
+        startActivity(intent);
+    }
+
+    public void newActivityNewTask(Class activity) {
+        Intent intent = new Intent(getApplicationContext(), activity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

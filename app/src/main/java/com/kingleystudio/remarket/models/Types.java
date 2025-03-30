@@ -8,6 +8,7 @@ public class Types {
     public static final String OK = "ok";
 
     public static final String ID = "id";
+    public static final String UID = "uid";
     public static final String USERNAME = "unm";
     public static final String PASSWORD = "psw";
     public static final String ACCOUNT_SIGNUP = "asup";
@@ -45,4 +46,5 @@ public class Types {
     public static final String NEW_MESSAGE = "nm";
     public static final String TEXT = "txt";
     public static final String SEARCH = "srch";
+    public static final String PAY = "pay";
 }

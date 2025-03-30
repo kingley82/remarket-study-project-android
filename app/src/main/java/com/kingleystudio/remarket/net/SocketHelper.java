@@ -32,7 +32,7 @@ public class SocketHelper {
     public SocketHelper() {
         URI uri;
         try {
-            uri = new URI("ws://192.168.0.108:8088/");
+            uri = new URI("ws://192.168.0.109:8088/");
         }
         catch (URISyntaxException e) {
             e.printStackTrace();

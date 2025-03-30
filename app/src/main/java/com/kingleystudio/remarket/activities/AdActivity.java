@@ -42,7 +42,7 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
     private LinearLayout adPhotosLayout;
     private TextView adTitle, adTitle2;
     private TextView adPrice, adPhone, adDescription, adSeller;
-    private Button chatWithSellerBtn;
+    private Button chatWithSellerBtn, buyThisBtn;
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
@@ -70,6 +70,7 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
         adDescription = findViewById(R.id.adDesc);
         adSeller = findViewById(R.id.adSeller);
         chatWithSellerBtn = findViewById(R.id.chatWithSellerBtn);
+        buyThisBtn = findViewById(R.id.buyThisBtn);
     }
 
     @Override
@@ -111,6 +112,7 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
                 switch (event) {
                     case Types.GET_AD:
                         currentAd = JsonUtils.convertJsonNodeToObject(response.getPayload().get(Types.AD), Ad.class);
+                        if (currentAd.getStatus().equals("closed")) finish();
                         adTitle.setText(currentAd.getTitle());
                         adTitle2.setText(currentAd.getTitle());
                         adPrice.setText(String.valueOf(currentAd.getPrice())+"₽");
@@ -174,6 +176,14 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
                                     } catch (JSONException e) {
                                         throw new RuntimeException(e);
                                     }
+                                }
+                            });
+                            buyThisBtn.setEnabled(true);
+                            buyThisBtn.setVisibility(View.VISIBLE);
+                            buyThisBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    newActivity(PaymentActivity.class);
                                 }
                             });
                         }
