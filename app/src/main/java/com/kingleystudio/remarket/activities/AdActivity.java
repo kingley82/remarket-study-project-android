@@ -112,7 +112,7 @@ public class AdActivity extends ABCActivity implements SocketHelper.SocketListen
                 switch (event) {
                     case Types.GET_AD:
                         currentAd = JsonUtils.convertJsonNodeToObject(response.getPayload().get(Types.AD), Ad.class);
-                        if (currentAd.getStatus().equals("closed")) finish();
+                        if (currentAd.getStatus().equals("closed") && currentAd.getSeller().getId() != Config.currentUser.getId()) finish();
                         adTitle.setText(currentAd.getTitle());
                         adTitle2.setText(currentAd.getTitle());
                         adPrice.setText(String.valueOf(currentAd.getPrice())+"₽");

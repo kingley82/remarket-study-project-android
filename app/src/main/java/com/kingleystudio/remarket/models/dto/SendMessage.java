@@ -18,7 +18,6 @@ import lombok.Setter;
 public class SendMessage implements IBaseMessage {
     private String message;
     private int dialog;
-    private int sender;
     @Override
     public String getType() {
         return Types.NEW_MESSAGE;
@@ -34,7 +33,6 @@ public class SendMessage implements IBaseMessage {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(Types.TEXT, message);
         jsonObject.put(Types.DIALOG, dialog);
-        jsonObject.put(Types.SENDER, sender);
         return jsonObject;
     }
 }

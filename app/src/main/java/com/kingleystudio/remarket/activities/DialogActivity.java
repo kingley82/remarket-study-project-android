@@ -78,7 +78,7 @@ public class DialogActivity extends ABCActivity implements SocketHelper.SocketLi
             @Override
             public void onClick(View v) {
                 try {
-                    socketHelper.send(new PayloadWrapper(new SendMessage(edit.getText().toString(), dialog.getId(), Config.currentUser.getId())));
+                    socketHelper.send(new PayloadWrapper(new SendMessage(edit.getText().toString(), dialog.getId())));
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
