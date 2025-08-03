@@ -1,3 +1,5 @@
+Проект был создан в качестве курсовой работы, зима-весна 2025.
+
 app/src/main/java/com/kingleystudio/remarket/net/SocketHelper.java, 35 строка, укажите адрес, заданный в сервере, для подключения к нему  
 Конфигурация Android Studio:  
 ![Конфигурация](https://github.com/user-attachments/assets/e2ee0999-eb8d-41b9-b992-0478c61e5b28)  
